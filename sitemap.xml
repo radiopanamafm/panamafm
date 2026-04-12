@@ -3,36 +3,36 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
   <url>
-    <loc>https://radiopanamafm.github.io/panamafm/</loc>
+    <loc>https://www.radiopanamafm.com.br/</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://radiopanamafm.github.io/panamafm/" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.radiopanamafm.com.br/" />
   </url>
 
   <url>
-    <loc>https://radiopanamafm.github.io/panamafm/#programacao</loc>
+    <loc>https://www.radiopanamafm.com.br/#programacao</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://radiopanamafm.github.io/panamafm/#apresentadores</loc>
+    <loc>https://www.radiopanamafm.com.br/#apresentadores</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://radiopanamafm.github.io/panamafm/#sobre</loc>
+    <loc>https://www.radiopanamafm.com.br/#sobre</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://radiopanamafm.github.io/panamafm/#contato</loc>
+    <loc>https://www.radiopanamafm.com.br/#contato</loc>
     <lastmod>2026-04-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

@@ -382,6 +382,7 @@
       font-size: 34px; border: 3px solid var(--gold);
       box-shadow: 0 4px 16px rgba(204,20,20,.2); overflow: hidden;
     }
+    .host-av img { width: 100%; height: 100%; object-fit: cover; }
     .host-name { font-family: var(--font-h); font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
     .host-role { font-size: 13px; color: var(--red); font-weight: 600; margin-bottom: 6px; }
     .host-schedule { font-size: 12px; color: var(--text-3); }
@@ -399,13 +400,11 @@
       gap: 72px; align-items: center; position: relative; z-index: 1;
     }
     .about-visual {
-      background: linear-gradient(135deg, var(--dark-warm), var(--dark-card));
       border-radius: var(--radius-card); aspect-ratio: 4/3;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px; border: 1px solid rgba(204,20,20,.18);
-      font-size: 72px;
+      overflow: hidden; position: relative;
+      box-shadow: 0 16px 48px rgba(0,0,0,.4);
     }
-    .about-visual p { font-size: 13px; color: rgba(255,255,255,.35); }
+    .about-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .about-list { list-style: none; margin: 24px 0; display: flex; flex-direction: column; gap: 12px; }
     .about-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: rgba(255,255,255,.75); }
     .about-list li::before {
@@ -633,9 +632,9 @@
             </div>
             <div class="hero-proof">
               <div class="av-stack">
-                <div class="av" style="background:linear-gradient(135deg,#CC1414,#600);">👨</div>
-                <div class="av" style="background:linear-gradient(135deg,#1A264F,#0a1020);">👩</div>
-                <div class="av" style="background:linear-gradient(135deg,#F5C210,#a07a00);">🧑</div>
+                <img class="av" src="https://i.pravatar.cc/80?img=15" alt="Ouvinte" />
+                <img class="av" src="https://i.pravatar.cc/80?img=5"  alt="Ouvinte" />
+                <img class="av" src="https://i.pravatar.cc/80?img=22" alt="Ouvinte" />
               </div>
               <div class="proof-text"><span>+50 mil</span> ouvintes<br/>em toda a região</div>
             </div>
@@ -649,7 +648,9 @@
 
             <div class="hero-player">
               <div class="hp-top">
-                <div class="hp-thumb">🎵</div>
+                <div class="hp-thumb">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3M8 22h8"/></svg>
+                </div>
                 <div class="hp-info">
                   <div class="hp-title">Panamá FM 87.9</div>
                   <div class="hp-sub">Transmissão ao vivo</div>
@@ -657,14 +658,22 @@
               </div>
               <div class="hp-bar"><div class="hp-bar-fill"></div></div>
               <div class="hp-controls">
-                <button class="hpc">⏮</button>
-                <button class="hpc play" id="heroPlay" onclick="togglePlay()">▶</button>
-                <button class="hpc">⏭</button>
+                <button class="hpc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                </button>
+                <button class="hpc play" id="heroPlay" onclick="togglePlay()">
+                  <svg id="heroPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                </button>
+                <button class="hpc">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                </button>
               </div>
             </div>
 
             <div class="freq-badge">
-              <div class="fb-icon">📻</div>
+              <div class="fb-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+              </div>
               <div>
                 <div class="fb-num">87.9</div>
                 <div class="fb-label">FM</div>
@@ -739,25 +748,25 @@
         </div>
         <div class="hosts-grid">
           <div class="host-card fade-in d1">
-            <div class="host-av" style="background:linear-gradient(135deg,#CC1414,#600);">🎙️</div>
+            <div class="host-av"><img src="https://i.pravatar.cc/200?img=69" alt="Carlos Matos" /></div>
             <div class="host-name">Carlos Matos</div>
             <div class="host-role">Locutor da Manhã</div>
             <div class="host-schedule">Seg–Sex · 06h–10h</div>
           </div>
           <div class="host-card fade-in d2">
-            <div class="host-av" style="background:linear-gradient(135deg,#F5C210,#a07a00);">🎤</div>
+            <div class="host-av"><img src="https://i.pravatar.cc/200?img=47" alt="Ana Paula Lima" /></div>
             <div class="host-name">Ana Paula Lima</div>
             <div class="host-role">Apresentadora</div>
             <div class="host-schedule">Diário · 10h–12h</div>
           </div>
           <div class="host-card fade-in d3">
-            <div class="host-av" style="background:linear-gradient(135deg,#1A264F,#0a1020);">🎵</div>
+            <div class="host-av"><img src="https://i.pravatar.cc/200?img=44" alt="Juliana Ramos" /></div>
             <div class="host-name">Juliana Ramos</div>
             <div class="host-role">Rainha da Tarde</div>
             <div class="host-schedule">Diário · 14h–18h</div>
           </div>
           <div class="host-card fade-in d4">
-            <div class="host-av" style="background:linear-gradient(135deg,#2e7d32,#1b5e20);">📰</div>
+            <div class="host-av"><img src="https://i.pravatar.cc/200?img=12" alt="Marcos Ferreira" /></div>
             <div class="host-name">Marcos Ferreira</div>
             <div class="host-role">Jornalista / Editor</div>
             <div class="host-schedule">Seg–Sex · 18h–20h</div>
@@ -770,7 +779,9 @@
     <section class="about" id="sobre">
       <div class="container">
         <div class="about-grid">
-          <div class="about-visual fade-in">🎙️<p>Estúdio Panamá FM 87.9</p></div>
+          <div class="about-visual fade-in">
+            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&q=80" alt="Estúdio Rádio Panamá FM" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-card);" />
+          </div>
           <div class="fade-in d2">
             <div class="sec-label">Nossa Rádio</div>
             <h2 class="sec-title light">A Paixão por Trás da<br/><em class="gold">Nossa Missão</em></h2>
@@ -822,28 +833,36 @@
             <p class="sec-sub">Quer anunciar, fazer um pedido musical ou dar uma sugestão? A gente adora ouvir você!</p>
             <div class="contact-items">
               <div class="ci">
-                <div class="ci-icon">📍</div>
+                <div class="ci-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC1414" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
                 <div>
                   <div class="ci-title">Endereço</div>
-                  <div class="ci-value">Sua cidade, Estado — Brasil</div>
+                  <div class="ci-value">Panamá, Goiás — Brasil</div>
                 </div>
               </div>
               <div class="ci">
-                <div class="ci-icon">📞</div>
+                <div class="ci-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC1414" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.37 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 15.6z"/></svg>
+                </div>
                 <div>
                   <div class="ci-title">Telefone / WhatsApp</div>
                   <div class="ci-value">(XX) XXXXX-XXXX</div>
                 </div>
               </div>
               <div class="ci">
-                <div class="ci-icon">✉️</div>
+                <div class="ci-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC1414" stroke-width="2" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
                 <div>
                   <div class="ci-title">E-mail</div>
                   <div class="ci-value">contato@radiopanamafm.com.br</div>
                 </div>
               </div>
               <div class="ci">
-                <div class="ci-icon">📻</div>
+                <div class="ci-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#CC1414" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+                </div>
                 <div>
                   <div class="ci-title">Frequência</div>
                   <div class="ci-value">87.9 MHz FM · Transmissão 24h</div>
@@ -906,10 +925,18 @@
           <img src="Logo-radio-panama.png" alt="Rádio Panamá FM" />
           <p>Levando música, informação e alegria para toda a região. De bem com a vida, sempre!</p>
           <div class="footer-socials">
-            <a href="#" class="soc">f</a>
-            <a href="#" class="soc">▣</a>
-            <a href="#" class="soc">✆</a>
-            <a href="#" class="soc">▶</a>
+            <a href="#" class="soc" title="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="soc" title="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="soc" title="WhatsApp">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+            </a>
+            <a href="#" class="soc" title="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98" fill="white"/></svg>
+            </a>
           </div>
         </div>
         <div class="footer-col">
@@ -952,7 +979,9 @@
       🔊
       <input type="range" min="0" max="100" value="80" oninput="setVol(this.value)" />
     </div>
-    <button class="lb-play" id="lbPlay" onclick="togglePlay()">▶</button>
+    <button class="lb-play" id="lbPlay" onclick="togglePlay()">
+      <svg id="lbPlayIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+    </button>
   </div>
 
   <!-- Substitua src pela URL do stream ao vivo -->
@@ -995,13 +1024,17 @@
     let playing    = false;
     let userPaused = false; // distingue pausa manual de interrupção do sistema
 
+    const SVG_PLAY  = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>';
+    const SVG_PAUSE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+    const SVG_PLAY_SM  = '<svg id="heroPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>';
+    const SVG_PAUSE_SM = '<svg id="heroPlayIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>';
+
     function setPlayUI(isPlaying) {
-      const icon = isPlaying ? '⏸' : '▶';
-      document.getElementById('lbPlay').textContent = icon;
+      document.getElementById('lbPlay').innerHTML   = isPlaying ? SVG_PAUSE    : SVG_PLAY;
       const hp = document.getElementById('heroPlay');
-      if (hp) hp.textContent = icon;
+      if (hp) hp.innerHTML = isPlaying ? SVG_PAUSE_SM : SVG_PLAY_SM;
       document.getElementById('lbTitle').textContent = isPlaying
-        ? '▶  Panamá FM 87.9 — Tocando Ao Vivo'
+        ? 'Panamá FM 87.9 — Tocando Ao Vivo'
         : 'Panamá FM 87.9 — Ao Vivo';
     }
 

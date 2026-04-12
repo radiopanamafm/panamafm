@@ -852,12 +852,8 @@
             </div>
           </div>
           <div class="fade-in d2">
-            <form
-              action="https://formspree.io/f/xnjlavjn"
-              method="POST"
-            >
+            <form id="contactForm">
               <input type="hidden" name="_subject" value="Nova mensagem — Site Rádio Panamá FM 87.9" />
-              <input type="hidden" name="_next" value="https://www.radiopanamafm.com.br/?enviado=1" />
 
               <div class="form-row">
                 <div class="form-group">
@@ -888,7 +884,7 @@
                 <label>Mensagem</label>
                 <textarea name="mensagem" placeholder="Escreva aqui..."></textarea>
               </div>
-              <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">
+              <button type="submit" id="submitBtn" class="btn btn-red" style="width:100%;justify-content:center;">
                 Enviar Mensagem
                 <span class="btn-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -994,23 +990,76 @@
       document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
     })() : null;
 
-    // Player
-    let playing = false;
+    // ── PLAYER ───────────────────────────────────────────────
     const audio = document.getElementById('audio');
-    function togglePlay() {
-      playing = !playing;
-      const icon = playing ? '⏸' : '▶';
+    let playing    = false;
+    let userPaused = false; // distingue pausa manual de interrupção do sistema
+
+    function setPlayUI(isPlaying) {
+      const icon = isPlaying ? '⏸' : '▶';
       document.getElementById('lbPlay').textContent = icon;
       const hp = document.getElementById('heroPlay');
       if (hp) hp.textContent = icon;
-      document.getElementById('lbTitle').textContent = playing
+      document.getElementById('lbTitle').textContent = isPlaying
         ? '▶  Panamá FM 87.9 — Tocando Ao Vivo'
         : 'Panamá FM 87.9 — Ao Vivo';
-      // audio[playing ? 'play' : 'pause'](); // ativar com stream real
     }
+
+    function togglePlay() {
+      if (playing) {
+        userPaused = true;
+        audio.pause();
+        playing = false;
+        setPlayUI(false);
+      } else {
+        userPaused = false;
+        audio.play().catch(() => {});
+        playing = true;
+        setPlayUI(true);
+      }
+    }
+
     function setVol(v) { audio.volume = v / 100; }
 
-    // Mobile nav
+    // ── INTERRUPÇÕES (chamada, outra mídia) ──────────────────
+    // Quando o sistema pausa (chamada, outra app de áudio), retoma ao terminar
+    audio.addEventListener('pause', () => {
+      if (!userPaused) {
+        // foi o sistema que pausou — aguarda e retoma
+        playing = false;
+        setPlayUI(false);
+      }
+    });
+
+    audio.addEventListener('play', () => {
+      playing = true;
+      setPlayUI(true);
+    });
+
+    // Retoma automaticamente quando o áudio fica disponível de novo
+    audio.addEventListener('canplay', () => {
+      if (!userPaused && !playing) {
+        audio.play().catch(() => {});
+      }
+    });
+
+    // ── MEDIA SESSION API (tela bloqueada / fones) ───────────
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title:  'Panamá FM 87.9 — Ao Vivo',
+        artist: 'De bem com a vida!',
+        album:  'Panamá, Goiás',
+        artwork: [
+          { src: 'Logo-radio-panama.png', sizes: '512x512', type: 'image/png' }
+        ]
+      });
+
+      navigator.mediaSession.setActionHandler('play',  () => { userPaused = false; audio.play().catch(() => {}); });
+      navigator.mediaSession.setActionHandler('pause', () => { userPaused = true;  audio.pause(); });
+      navigator.mediaSession.setActionHandler('stop',  () => { userPaused = true;  audio.pause(); });
+    }
+
+    // ── MOBILE NAV ───────────────────────────────────────────
     function openMob() {
       document.getElementById('mobileNav').classList.add('open');
       document.getElementById('navOverlay').classList.add('active');
@@ -1022,18 +1071,44 @@
       document.body.style.overflow = '';
     }
 
-    // Mensagem de sucesso após redirecionamento do FormSubmit
-    if (new URLSearchParams(location.search).get('enviado') === '1') {
-      const sec = document.getElementById('contato');
-      if (sec) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth' }), 300);
-      const notice = document.createElement('div');
-      notice.style.cssText = 'position:fixed;top:96px;right:24px;z-index:9999;background:#2e7d32;color:#fff;font-family:var(--font-h);font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.2);';
-      notice.textContent = '✓ Mensagem enviada com sucesso!';
-      document.body.appendChild(notice);
-      setTimeout(() => notice.remove(), 5000);
+    // ── FORMULÁRIO (AJAX — sem sair do site) ─────────────────
+    function showToast(msg, color) {
+      const t = document.createElement('div');
+      t.style.cssText = `position:fixed;top:96px;right:24px;z-index:9999;background:${color};color:#fff;font-family:var(--font-h);font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.2);transition:opacity .4s;`;
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 400); }, 4000);
     }
 
-    // Smooth scroll com offset
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      const original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = 'Enviando...';
+
+      try {
+        const res = await fetch('https://formspree.io/f/xnjlavjn', {
+          method: 'POST',
+          body: new FormData(this),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          showToast('✓ Mensagem enviada com sucesso!', '#2e7d32');
+          this.reset();
+        } else {
+          showToast('Erro ao enviar. Tente novamente.', '#CC1414');
+        }
+      } catch {
+        showToast('Sem conexão. Verifique sua internet.', '#CC1414');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = original;
+      }
+    });
+
+    // ── SMOOTH SCROLL ─────────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', function(e) {
         const t = document.querySelector(this.getAttribute('href'));
@@ -1041,7 +1116,7 @@
       });
     });
 
-    // Scroll spy (correto)
+    // ── SCROLL SPY ────────────────────────────────────────────
     const ioSpy = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting)

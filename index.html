@@ -852,24 +852,35 @@
             </div>
           </div>
           <div class="fade-in d2">
-            <form onsubmit="handleForm(event)">
+            <form
+              action="https://formsubmit.co/radiopanama87.9@gmail.com"
+              method="POST"
+            >
+              <!-- FormSubmit config -->
+              <input type="hidden" name="_subject" value="Nova mensagem — Site Rádio Panamá FM 87.9" />
+              <input type="hidden" name="_next" value="https://radiopanamafm.github.io/panamafm/?enviado=1" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <!-- Honeypot anti-spam -->
+              <input type="text" name="_honey" style="display:none" />
+
               <div class="form-row">
                 <div class="form-group">
                   <label>Seu Nome</label>
-                  <input type="text" placeholder="João Silva" required />
+                  <input type="text" name="nome" placeholder="João Silva" required />
                 </div>
                 <div class="form-group">
                   <label>Telefone</label>
-                  <input type="tel" placeholder="(XX) XXXXX-XXXX" />
+                  <input type="tel" name="telefone" placeholder="(XX) XXXXX-XXXX" />
                 </div>
               </div>
               <div class="form-group">
                 <label>E-mail</label>
-                <input type="email" placeholder="seu@email.com" required />
+                <input type="email" name="email" placeholder="seu@email.com" required />
               </div>
               <div class="form-group">
                 <label>Assunto</label>
-                <select>
+                <select name="assunto">
                   <option value="">Selecione...</option>
                   <option>Pedido Musical</option>
                   <option>Publicidade / Anúncio</option>
@@ -880,9 +891,9 @@
               </div>
               <div class="form-group">
                 <label>Mensagem</label>
-                <textarea placeholder="Escreva aqui..."></textarea>
+                <textarea name="mensagem" placeholder="Escreva aqui..."></textarea>
               </div>
-              <button type="submit" id="submitBtn" class="btn btn-red" style="width:100%;justify-content:center;">
+              <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">
                 Enviar Mensagem
                 <span class="btn-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -1016,17 +1027,15 @@
       document.body.style.overflow = '';
     }
 
-    // Form
-    function handleForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
-      btn.style.background = '#2e7d32';
-      btn.innerHTML = '✓ Mensagem enviada!';
-      setTimeout(() => {
-        btn.style.background = '';
-        btn.innerHTML = 'Enviar Mensagem <span class="btn-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>';
-        e.target.reset();
-      }, 3000);
+    // Mensagem de sucesso após redirecionamento do FormSubmit
+    if (new URLSearchParams(location.search).get('enviado') === '1') {
+      const sec = document.getElementById('contato');
+      if (sec) setTimeout(() => sec.scrollIntoView({ behavior: 'smooth' }), 300);
+      const notice = document.createElement('div');
+      notice.style.cssText = 'position:fixed;top:96px;right:24px;z-index:9999;background:#2e7d32;color:#fff;font-family:var(--font-h);font-weight:700;font-size:15px;padding:14px 22px;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.2);';
+      notice.textContent = '✓ Mensagem enviada com sucesso!';
+      document.body.appendChild(notice);
+      setTimeout(() => notice.remove(), 5000);
     }
 
     // Smooth scroll com offset

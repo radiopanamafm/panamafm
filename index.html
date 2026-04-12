@@ -40,10 +40,28 @@
   <meta name="twitter:image" content="https://www.radiopanamafm.com.br/Logo-radio-panama.png" />
   <meta name="twitter:image:alt" content="Logo Rádio Panamá FM 87.9" />
 
+  <!-- ═══ PWA — MANIFEST & META ══════════════════════════════ -->
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- Apple / iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Panamá FM" />
+  <link rel="apple-touch-icon" href="Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="Logo-radio-panama.png" />
+  <meta name="apple-touch-fullscreen" content="yes" />
+
+  <!-- Microsoft / Windows -->
+  <meta name="msapplication-TileColor" content="#CC1414" />
+  <meta name="msapplication-TileImage" content="Logo-radio-panama.png" />
+  <meta name="msapplication-navbutton-color" content="#CC1414" />
+  <meta name="msapplication-starturl" content="/" />
+
   <!-- ═══ FAVICON ══════════════════════════════════════════════ -->
   <link rel="icon" type="image/png" sizes="32x32" href="Logo-radio-panama.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="Logo-radio-panama.png" />
-  <link rel="apple-touch-icon" href="Logo-radio-panama.png" />
   <link rel="shortcut icon" href="Logo-radio-panama.png" />
 
   <!-- ═══ SCHEMA.ORG — RadioStation (JSON-LD) ════════════════ -->
@@ -557,9 +575,73 @@
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--dark); }
     ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* ── PWA INSTALL BUTTON ───────────────────────── */
+    .btn-install {
+      display: none;
+      align-items: center; gap: 6px;
+      font-family: var(--font-h); font-size: 13px; font-weight: 700;
+      color: var(--white); background: transparent;
+      border: 1.5px solid var(--gold); border-radius: var(--radius-pill);
+      padding: 8px 14px; cursor: pointer;
+      transition: all .2s; white-space: nowrap; letter-spacing: -.2px;
+    }
+    .btn-install:hover { background: rgba(245,194,16,.1); }
+    .btn-install svg { flex-shrink: 0; }
+
+    /* ── OFFLINE BANNER ───────────────────────────── */
+    .offline-banner {
+      position: fixed; top: 76px; left: 0; right: 0; z-index: 200;
+      background: #7a3a00; color: var(--white);
+      font-family: var(--font-h); font-size: 13px; font-weight: 600;
+      text-align: center; padding: 10px 24px;
+      display: none; align-items: center; justify-content: center; gap: 8px;
+    }
+    .offline-banner.show { display: flex; }
+
+    /* ── PWA STANDALONE: esconde live-bar overlap ─── */
+    @media (display-mode: standalone) {
+      .live-bar { padding-bottom: env(safe-area-inset-bottom, 10px); }
+      main      { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+    }
+
+    /* ── RESPONSIVIDADE EXTRA ─────────────────────── */
+    /* Navbar compacta em telas médias */
+    @media(max-width:900px){
+      .btn-install { display: none !important; }
+    }
+    /* Live bar mobile compacta */
+    @media(max-width:400px){
+      .lb-logo { display: none; }
+      .live-bar { gap: 10px; padding: 8px 14px; }
+      .lb-title { font-size: 12px; }
+    }
+    /* Cards programação: padding reduzido em mobile */
+    @media(max-width:480px){
+      .show-card { padding: 18px; }
+      .host-card { padding: 20px 14px; }
+      .schedule  { padding: 64px 0; }
+      .hosts     { padding: 64px 0; }
+      .about     { padding: 64px 0 0; }
+      .contact   { padding: 64px 0; }
+      .footer    { padding: 40px 0 20px; }
+      .sec-sub   { font-size: 15px; }
+      .hero-title{ font-size: 26px; letter-spacing: -1.2px; }
+      .hero-desc { font-size: 15px; }
+      .stat-num  { font-size: 30px; }
+      .stat-item { padding: 28px 12px; }
+      .about-list li { font-size: 14px; }
+      .cta-title  { display: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- Banner offline -->
+  <div class="offline-banner" id="offlineBanner">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+    Você está offline — a rádio ficará disponível ao reconectar.
+  </div>
 
   <!-- Overlay + Mobile nav -->
   <div class="nav-overlay" id="navOverlay" onclick="closeMob()"></div>
@@ -586,6 +668,10 @@
           <a href="#sobre">Sobre</a>
           <a href="#contato">Contato</a>
         </nav>
+        <button id="installBtn" class="btn-install" style="display:none;" onclick="installPWA()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Instalar App
+        </button>
         <a href="#contato" class="btn btn-outline" style="height:44px;font-size:14px;padding:5px 5px 5px 16px;">
           Anuncie Aqui
           <span class="btn-icon" style="width:34px;height:34px;">
@@ -1155,6 +1241,77 @@
       });
     }, { rootMargin: '-40% 0px -40% 0px' });
     secs.forEach(s => ioSpy.observe(s));
+
+    // ── PWA: SERVICE WORKER ───────────────────────────────────
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+          .then(reg => {
+            // Verifica atualizações a cada 60s
+            setInterval(() => reg.update(), 60000);
+          })
+          .catch(err => console.warn('SW não registrado:', err));
+      });
+    }
+
+    // ── PWA: INSTALL PROMPT ───────────────────────────────────
+    let deferredPrompt = null;
+    const installBtn   = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', e => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBtn.style.display = 'flex';
+    });
+
+    async function installPWA() {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      installBtn.style.display = 'none';
+      if (outcome === 'accepted') {
+        showToast('App instalado! Acesse pela tela inicial.', '#2e7d32');
+      }
+    }
+
+    // Remove botão se já instalado
+    window.addEventListener('appinstalled', () => {
+      installBtn.style.display = 'none';
+      deferredPrompt = null;
+    });
+
+    // ── PWA: SHORTCUT ?play=1 ─────────────────────────────────
+    if (new URLSearchParams(location.search).get('play') === '1') {
+      window.addEventListener('load', () => setTimeout(() => {
+        if (!playing) togglePlay();
+      }, 800));
+    }
+
+    // ── PWA: OFFLINE / ONLINE DETECTION ──────────────────────
+    const offlineBanner = document.getElementById('offlineBanner');
+
+    function updateOnlineStatus() {
+      if (!navigator.onLine) {
+        offlineBanner.classList.add('show');
+        if (playing) {
+          audio.pause();
+          playing = false;
+          setPlayUI(false);
+          userPaused = false; // ao voltar a rede, retoma
+        }
+      } else {
+        offlineBanner.classList.remove('show');
+        if (!userPaused && !playing) {
+          // pequeno delay para stream reconectar
+          setTimeout(() => audio.play().catch(() => {}), 1500);
+        }
+      }
+    }
+
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline', updateOnlineStatus);
+    updateOnlineStatus(); // verifica estado inicial
   </script>
 </body>
 </html>

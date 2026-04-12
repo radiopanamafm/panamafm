@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://radiopanamafm.github.io/panamafm/sitemap.xml

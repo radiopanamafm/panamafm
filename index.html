@@ -308,30 +308,57 @@
     .proof-text span { color: var(--gold); }
 
     /* Hero visual */
-    .hero-visual { position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; }
-    .logo-wrap { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; }
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .logo-wrap {
+      position: relative; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 60px; /* espaço para os cards absolutos */
+    }
     .logo-glow {
       position: absolute; inset: -16px; border-radius: 50%;
       background: radial-gradient(circle, rgba(204,20,20,.28) 0%, transparent 70%);
       animation: glow 3s ease-in-out infinite;
     }
     @keyframes glow { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
-    .logo-wrap img { width: 100%; max-width: 640px; position: relative; z-index: 1; filter: drop-shadow(0 8px 32px rgba(204,20,20,.5)); }
+    .logo-wrap img { width: 100%; max-width: 580px; position: relative; z-index: 1; filter: drop-shadow(0 8px 32px rgba(204,20,20,.5)); }
 
-    /* Hero stats bar */
-    .hero-stats {
-      display: flex; align-items: center; justify-content: center; gap: 20px;
-      background: rgba(255,255,255,.06); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--radius-pill); padding: 12px 28px;
-      width: 100%; max-width: 480px;
+    /* Floating player card */
+    .hero-player {
+      position: absolute; bottom: 0; left: 0;
+      background: var(--white); border-radius: var(--radius-card);
+      padding: 14px 16px; width: 220px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.22); z-index: 2;
+      animation: float 4s ease-in-out infinite;
     }
-    .hs-item { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,.75); font-size: 13px; font-weight: 600; white-space: nowrap; }
-    .hs-item svg { flex-shrink: 0; stroke: var(--gold); }
-    .hs-num { color: var(--white); font-family: var(--font-h); }
-    .hs-div { width: 1px; height: 20px; background: rgba(255,255,255,.2); }
-
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .hp-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .hp-thumb {
+      width: 38px; height: 38px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--red), var(--red-deep));
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff;
+    }
+    .hp-info .hp-title { font-family: var(--font-h); font-size: 13px; font-weight: 700; color: var(--text); }
+    .hp-info .hp-sub  { font-size: 11px; color: var(--text-2); }
+    .hp-bar { height: 3px; background: #f0f0f0; border-radius: 2px; margin-bottom: 10px; overflow: hidden; }
+    .hp-bar-fill { height: 100%; width: 55%; background: var(--red); border-radius: 2px; animation: prog 8s linear infinite; }
+    @keyframes prog { 0%{width:10%} 100%{width:95%} }
+    .hp-controls { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .hpc { width: 30px; height: 30px; border-radius: 50%; background: none; border: none; cursor: pointer; color: var(--text-2); display: flex; align-items: center; justify-content: center; }
+    .hpc.play { width: 36px; height: 36px; background: var(--red); color: var(--white); }
+    .hpc.play:hover { background: var(--red-deep); }
+
+    /* Freq badge */
+    .freq-badge {
+      position: absolute; top: 0; right: 0;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
+      border-radius: var(--radius-card); padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.14); z-index: 2;
+      animation: float 4s ease-in-out infinite; animation-delay: -2s;
+    }
+    .fb-icon { width: 34px; height: 34px; background: var(--gold-tint); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .fb-num { font-family: var(--font-h); font-size: 17px; font-weight: 700; color: var(--text); line-height: 1; }
+    .fb-label { font-size: 11px; color: var(--text-2); }
 
     /* ── PROGRAMAÇÃO ─────────────────────────────── */
     .schedule { padding: 96px 0; background: var(--cream); }
@@ -523,8 +550,8 @@
       .hero-desc { margin: 0 auto 34px; }
       .hero-actions, .hero-proof { justify-content: center; }
       .hero-visual { order: -1; }
-      .hero-stats { max-width: 100%; }
-      .logo-wrap img { max-width: 480px; }
+      .logo-wrap { padding: 32px 48px; }
+      .logo-wrap img { max-width: 420px; }
       .hosts-grid { grid-template-columns: repeat(2,1fr); }
       .about-grid { grid-template-columns: 1fr; gap: 48px; }
       .stats-row { grid-template-columns: repeat(2,1fr); }
@@ -537,14 +564,15 @@
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .hero-title { font-size: 34px; }
-      .hero-stats { gap: 12px; padding: 10px 18px; font-size: 12px; }
+      .hero-player, .freq-badge { display: none; }
+      .logo-wrap { padding: 16px; }
+      .logo-wrap img { max-width: 88vw; }
       .sch-grid { grid-template-columns: 1fr; }
       .hosts-grid { grid-template-columns: repeat(2,1fr); }
       .stats-row { grid-template-columns: repeat(2,1fr); }
       .footer-inner { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .vol { display: none; }
-      .logo-wrap img { max-width: 90vw; }
     }
     @media(max-width:480px){
       .sec-title { font-size: 28px; }
@@ -552,8 +580,6 @@
       .hero-actions { flex-direction: column; align-items: center; }
       .stats-row { grid-template-columns: 1fr 1fr; }
       .logo-wrap img { max-width: 92vw; }
-      .hero-stats { flex-wrap: wrap; gap: 10px; }
-      .hs-div { display: none; }
     }
 
     /* padding for live bar */
@@ -763,12 +789,6 @@
               A Rádio Panamá FM 87.9 toca a trilha sonora da sua vida. Programação variada, notícias locais e os maiores sucessos do Brasil.
             </p>
             <div class="hero-actions">
-              <button class="btn btn-red" onclick="togglePlay()">
-                ▶ &nbsp;Ouvir Ao Vivo
-                <span class="btn-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-                </span>
-              </button>
               <a href="#programacao" class="btn btn-outline">
                 Ver Programação
                 <span class="btn-icon">
@@ -790,21 +810,39 @@
             <div class="logo-wrap">
               <div class="logo-glow"></div>
               <img src="Logo-radio-panama.png" alt="Panamá FM 87.9" />
-            </div>
-            <div class="hero-stats">
-              <div class="hs-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49"/></svg>
-                <span class="hs-num">87.9 FM</span>
+
+              <div class="hero-player">
+                <div class="hp-top">
+                  <div class="hp-thumb">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M5 10a7 7 0 0 0 14 0M12 19v3M8 22h8"/></svg>
+                  </div>
+                  <div class="hp-info">
+                    <div class="hp-title">Panamá FM 87.9</div>
+                    <div class="hp-sub">Transmissão ao vivo</div>
+                  </div>
+                </div>
+                <div class="hp-bar"><div class="hp-bar-fill"></div></div>
+                <div class="hp-controls">
+                  <button class="hpc">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                  </button>
+                  <button class="hpc play" onclick="togglePlay()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                  </button>
+                  <button class="hpc">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                  </button>
+                </div>
               </div>
-              <div class="hs-div"></div>
-              <div class="hs-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span class="hs-num">24h no ar</span>
-              </div>
-              <div class="hs-div"></div>
-              <div class="hs-item">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <span class="hs-num">50K+ ouvintes</span>
+
+              <div class="freq-badge">
+                <div class="fb-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49M7.76 16.24a6 6 0 0 1 0-8.49M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>
+                </div>
+                <div>
+                  <div class="fb-num">87.9</div>
+                  <div class="fb-label">FM</div>
+                </div>
               </div>
             </div>
           </div>

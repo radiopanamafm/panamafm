@@ -309,14 +309,14 @@
 
     /* Hero visual */
     .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
-    .logo-wrap { position: relative; width: 380px; height: 380px; display: flex; align-items: center; justify-content: center; }
+    .logo-wrap { position: relative; width: 760px; height: 760px; display: flex; align-items: center; justify-content: center; }
     .logo-glow {
       position: absolute; inset: -16px; border-radius: 50%;
       background: radial-gradient(circle, rgba(204,20,20,.28) 0%, transparent 70%);
       animation: glow 3s ease-in-out infinite;
     }
     @keyframes glow { 0%,100%{opacity:.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
-    .logo-wrap img { width: 340px; position: relative; z-index: 1; filter: drop-shadow(0 8px 32px rgba(204,20,20,.5)); }
+    .logo-wrap img { width: 680px; position: relative; z-index: 1; filter: drop-shadow(0 8px 32px rgba(204,20,20,.5)); }
 
     /* Floating player card */
     .hero-player {
@@ -547,8 +547,8 @@
       .hero-desc { margin: 0 auto 34px; }
       .hero-actions, .hero-proof { justify-content: center; }
       .hero-visual { order: -1; }
-      .logo-wrap { width: 290px; height: 240px; }
-      .logo-wrap img { width: 260px; }
+      .logo-wrap { width: 580px; height: 480px; }
+      .logo-wrap img { width: 520px; }
       .hero-player { left: 0; }
       .freq-badge { right: 0; }
       .hosts-grid { grid-template-columns: repeat(2,1fr); }
@@ -570,12 +570,16 @@
       .footer-inner { grid-template-columns: 1fr; }
       .form-row { grid-template-columns: 1fr; }
       .vol { display: none; }
+      .logo-wrap { width: 90vw; height: auto; }
+      .logo-wrap img { width: 90vw; max-width: 520px; }
     }
     @media(max-width:480px){
       .sec-title { font-size: 28px; }
       .hosts-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: center; }
       .stats-row { grid-template-columns: 1fr 1fr; }
+      .logo-wrap { width: 92vw; }
+      .logo-wrap img { width: 92vw; max-width: 520px; }
     }
 
     /* padding for live bar */

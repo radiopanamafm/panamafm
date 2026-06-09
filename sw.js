@@ -4,12 +4,14 @@
    Network-only para streams de áudio, offline fallback.
 ═══════════════════════════════════════════════════════ */
 
-const CACHE_NAME    = 'panama-fm-v1';
+const CACHE_NAME    = 'panama-fm-v2';
 const OFFLINE_URL   = '/';
 
 const PRECACHE = [
   '/',
   '/index.html',
+  '/cms.css',
+  '/cms.js',
   '/Logo-radio-panama.png',
   '/manifest.json'
 ];
@@ -62,7 +64,11 @@ self.addEventListener('fetch', event => {
   }
 
   // Network-first: HTML (sempre tenta buscar versão atualizada)
-  if (request.headers.get('Accept')?.includes('text/html')) {
+  if (
+    request.headers.get('Accept')?.includes('text/html') ||
+    url.pathname === '/cms.js' ||
+    url.pathname === '/cms.css'
+  ) {
     event.respondWith(
       fetch(request)
         .then(response => {

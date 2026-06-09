@@ -1,0 +1,297 @@
+.cms-section {
+  padding: 96px 0;
+  background: #fff;
+}
+
+.cms-hero-banner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  max-width: 520px;
+  margin: -12px 0 24px;
+  padding: 11px 14px;
+  color: #fff;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+}
+
+.cms-hero-banner[hidden] { display: none; }
+.cms-hero-banner span { color: var(--gold); font-size: 10px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; }
+.cms-hero-banner strong { overflow: hidden; font-family: var(--font-h); font-size: 14px; text-overflow: ellipsis; white-space: nowrap; }
+.cms-hero-banner b { color: var(--gold); font-size: 11px; }
+
+.cms-events,
+.cms-gallery {
+  background: var(--cream);
+}
+
+.cms-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 42px;
+}
+
+.cms-more {
+  flex-shrink: 0;
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-pill);
+  padding: 11px 18px;
+  color: var(--red);
+  font-family: var(--font-h);
+  font-size: 14px;
+  font-weight: 700;
+  transition: .2s ease;
+}
+
+.cms-more:hover {
+  color: #fff;
+  background: var(--red);
+  border-color: var(--red);
+}
+
+.cms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.cms-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--gray-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.cms-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 44px rgba(0,0,0,.12);
+}
+
+.cms-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--dark-card);
+}
+
+.cms-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.cms-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  color: var(--red);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.cms-card-title {
+  margin-bottom: 9px;
+  color: var(--text);
+  font-family: var(--font-h);
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.18;
+}
+
+.cms-card-summary {
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cms-card-link {
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--red);
+  font-family: var(--font-h);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cms-empty {
+  grid-column: 1 / -1;
+  padding: 28px;
+  color: var(--text-2);
+  text-align: center;
+  background: rgba(255,255,255,.7);
+  border: 1px dashed var(--gray-border);
+  border-radius: var(--radius-card);
+}
+
+.cms-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.cms-gallery-card {
+  position: relative;
+  min-height: 250px;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--dark-card);
+}
+
+.cms-gallery-card:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.cms-gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s ease;
+}
+
+.cms-gallery-card:hover img {
+  transform: scale(1.04);
+}
+
+.cms-gallery-overlay {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 48px 18px 18px;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,.86));
+}
+
+.cms-gallery-overlay strong {
+  display: block;
+  font-family: var(--font-h);
+  font-size: 17px;
+}
+
+.cms-gallery-overlay span {
+  font-size: 12px;
+  color: rgba(255,255,255,.72);
+}
+
+.cms-detail-page {
+  min-height: 100vh;
+  padding: 130px 0 110px;
+  background: var(--cream);
+}
+
+body.cms-route .navbar {
+  background: rgba(13,3,6,.98);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 16px rgba(0,0,0,.24);
+}
+
+body.cms-route .navbar .nav-links a {
+  color: rgba(255,255,255,.82);
+}
+
+body.cms-route .navbar .nav-links a:hover,
+body.cms-route .navbar .nav-links a.active {
+  color: var(--gold);
+}
+
+body.cms-route .cms-detail-page {
+  padding-top: 142px;
+}
+
+body.cms-route .footer-brand img {
+  height: 82px;
+  object-fit: contain;
+}
+
+.cms-detail {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cms-detail-back {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--red);
+  font-weight: 700;
+}
+
+.cms-detail h1 {
+  margin: 10px 0 20px;
+  font-family: var(--font-h);
+  font-size: clamp(38px, 6vw, 68px);
+  line-height: 1.03;
+  letter-spacing: -2px;
+}
+
+.cms-detail-lead {
+  max-width: 720px;
+  margin-bottom: 28px;
+  color: var(--text-2);
+  font-size: 19px;
+  line-height: 1.65;
+}
+
+.cms-detail-cover {
+  width: 100%;
+  max-height: 590px;
+  margin: 24px 0 34px;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+
+.cms-richtext {
+  max-width: 760px;
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.cms-richtext h2,
+.cms-richtext h3 {
+  margin: 30px 0 10px;
+  font-family: var(--font-h);
+}
+
+.cms-richtext p {
+  margin-bottom: 18px;
+}
+
+.cms-detail-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.cms-detail-gallery img {
+  width: 100%;
+  border-radius: var(--radius-card);
+}
+
+@media (max-width: 900px) {
+  .cms-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cms-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .cms-section { padding: 64px 0; }
+  .cms-section-head { align-items: start; flex-direction: column; margin-bottom: 28px; }
+  .cms-grid { grid-template-columns: 1fr; }
+  .cms-gallery-grid { grid-template-columns: 1fr; }
+  .cms-gallery-card, .cms-gallery-card:first-child { grid-column: auto; grid-row: auto; min-height: 230px; }
+  .cms-detail-page { padding-top: 110px; }
+  .cms-detail-gallery { grid-template-columns: 1fr; }
+  .cms-hero-banner { grid-template-columns: 1fr; }
+}

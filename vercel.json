@@ -1,4 +1,6 @@
 {
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "public",
   "headers": [
     {
       "source": "/sw.js",
@@ -25,6 +27,9 @@
     }
   ],
   "rewrites": [
+    { "source": "/static/(.*)", "destination": "/admin/static/$1" },
+    { "source": "/admin", "destination": "/admin/index.html" },
+    { "source": "/admin/(.*)", "destination": "/admin/index.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

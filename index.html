@@ -48,22 +48,22 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Panamá FM" />
-  <link rel="apple-touch-icon" href="Logo-radio-panama.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="Logo-radio-panama.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="Logo-radio-panama.png" />
-  <link rel="apple-touch-icon" sizes="167x167" href="Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" href="/Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/Logo-radio-panama.png" />
+  <link rel="apple-touch-icon" sizes="167x167" href="/Logo-radio-panama.png" />
   <meta name="apple-touch-fullscreen" content="yes" />
 
   <!-- Microsoft / Windows -->
   <meta name="msapplication-TileColor" content="#CC1414" />
-  <meta name="msapplication-TileImage" content="Logo-radio-panama.png" />
+  <meta name="msapplication-TileImage" content="/Logo-radio-panama.png" />
   <meta name="msapplication-navbutton-color" content="#CC1414" />
   <meta name="msapplication-starturl" content="/" />
 
   <!-- ═══ FAVICON ══════════════════════════════════════════════ -->
-  <link rel="icon" type="image/png" sizes="32x32" href="Logo-radio-panama.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="Logo-radio-panama.png" />
-  <link rel="shortcut icon" href="Logo-radio-panama.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/Logo-radio-panama.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/Logo-radio-panama.png" />
+  <link rel="shortcut icon" href="/Logo-radio-panama.png" />
 
   <!-- ═══ SCHEMA.ORG — RadioStation (JSON-LD) ════════════════ -->
   <script type="application/ld+json">
@@ -137,6 +137,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/cms.css" />
   <style>
     /* ── TOKENS ─────────────────────────────────── */
     :root {
@@ -732,32 +733,34 @@
   <div class="nav-overlay" id="navOverlay" onclick="closeMob()"></div>
   <nav class="mobile-nav" id="mobileNav">
     <button class="mob-close" onclick="closeMob()">✕</button>
-    <a href="#inicio"         onclick="closeMob()">Início</a>
-    <a href="#programacao"    onclick="closeMob()">Programação</a>
-    <a href="#apresentadores" onclick="closeMob()">Apresentadores</a>
-    <a href="#sobre"          onclick="closeMob()">Sobre</a>
-    <a href="#contato"        onclick="closeMob()">Contato</a>
+    <a href="/#inicio"         onclick="closeMob()">Início</a>
+    <a href="/#noticias"       onclick="closeMob()">Notícias</a>
+    <a href="/#eventos"        onclick="closeMob()">Eventos</a>
+    <a href="/#programacao"    onclick="closeMob()">Programação</a>
+    <a href="/#apresentadores" onclick="closeMob()">Equipe</a>
+    <a href="/#galeria"        onclick="closeMob()">Galeria</a>
   </nav>
 
   <!-- Navbar -->
   <header class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a href="#inicio" class="nav-logo">
-          <img src="Logo-radio-panama.png" alt="Rádio Panamá FM 87.9" />
+        <a href="/#inicio" class="nav-logo">
+          <img src="/Logo-radio-panama.png" alt="Rádio Panamá FM 87.9" />
         </a>
         <nav class="nav-links">
-          <a href="#inicio" class="active">Início</a>
-          <a href="#programacao">Programação</a>
-          <a href="#apresentadores">Apresentadores</a>
-          <a href="#sobre">Sobre</a>
-          <a href="#contato">Contato</a>
+          <a href="/#inicio" class="active">Início</a>
+          <a href="/#noticias">Notícias</a>
+          <a href="/#eventos">Eventos</a>
+          <a href="/#programacao">Programação</a>
+          <a href="/#apresentadores">Equipe</a>
+          <a href="/#galeria">Galeria</a>
         </nav>
         <button id="installBtn" class="btn-install" style="display:none;" onclick="installPWA()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Instalar App
         </button>
-        <a href="#contato" class="btn btn-outline" style="height:44px;font-size:14px;padding:5px 5px 5px 16px;">
+        <a href="/#contato" class="btn btn-outline" style="height:44px;font-size:14px;padding:5px 5px 5px 16px;">
           Anuncie Aqui
           <span class="btn-icon" style="width:34px;height:34px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
@@ -788,6 +791,11 @@
             <p class="hero-desc">
               A Rádio Panamá FM 87.9 toca a trilha sonora da sua vida. Programação variada, notícias locais e os maiores sucessos do Brasil.
             </p>
+            <a class="cms-hero-banner" id="heroBanner" href="#" hidden>
+              <span>Em destaque</span>
+              <strong id="heroBannerText"></strong>
+              <b>Saiba mais →</b>
+            </a>
             <div class="hero-actions">
               <a href="#programacao" class="btn btn-outline">
                 Ver Programação
@@ -809,7 +817,7 @@
           <div class="hero-visual">
             <div class="logo-wrap">
               <div class="logo-glow"></div>
-              <img src="Logo-radio-panama.png" alt="Panamá FM 87.9" />
+              <img src="/Logo-radio-panama.png" alt="Panamá FM 87.9" />
 
               <div class="hero-player">
                 <div class="hp-top">
@@ -851,6 +859,38 @@
       </div>
     </section>
 
+    <section class="cms-section cms-news" id="noticias">
+      <div class="container">
+        <div class="cms-section-head fade-in">
+          <div>
+            <div class="sec-label">Informação local</div>
+            <h2 class="sec-title">Últimas <em>Notícias</em></h2>
+            <p class="sec-sub">Acompanhe o que acontece em Panamá e em toda a região.</p>
+          </div>
+          <a class="cms-more" href="/noticias">Ver todas</a>
+        </div>
+        <div class="cms-grid cms-news-grid" id="newsGrid">
+          <div class="cms-empty">Carregando as últimas notícias...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cms-section cms-events" id="eventos">
+      <div class="container">
+        <div class="cms-section-head fade-in">
+          <div>
+            <div class="sec-label">Agenda Panamá FM</div>
+            <h2 class="sec-title">Próximos <em>Eventos</em></h2>
+            <p class="sec-sub">Encontros, coberturas e momentos especiais perto de você.</p>
+          </div>
+          <a class="cms-more" href="/eventos">Ver agenda</a>
+        </div>
+        <div class="cms-grid cms-events-grid" id="eventsGrid">
+          <div class="cms-empty">Nenhum evento publicado no momento.</div>
+        </div>
+      </div>
+    </section>
+
     <!-- ══ PROGRAMAÇÃO ═══════════════════════════════ -->
     <section class="schedule" id="programacao">
       <div class="container">
@@ -861,7 +901,7 @@
             Do amanhecer à meia-noite, conteúdo para cada momento do seu dia.
           </p>
         </div>
-        <div class="sch-grid">
+        <div class="sch-grid" id="programsGrid">
           <!-- Seg–Sex -->
           <div class="show-card on-air fade-in d1">
             <span class="show-time">Seg–Sex · 09h</span>
@@ -903,7 +943,7 @@
             Vozes que emocionam, informam e animam o seu dia todos os dias na Panamá FM.
           </p>
         </div>
-        <div class="hosts-grid">
+        <div class="hosts-grid" id="presentersGrid">
           <div class="host-card fade-in d1">
             <div class="host-av"><img src="/divino-alexandre.jpg" alt="Divino Alexandre" style="object-position:center top;" /></div>
             <div class="host-name">Divino Alexandre</div>
@@ -937,12 +977,12 @@
       <div class="container">
         <div class="about-grid">
           <div class="about-visual fade-in">
-            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&q=80" alt="Estúdio Rádio Panamá FM" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-card);" />
+            <img id="aboutImage" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=700&q=80" alt="Estúdio Rádio Panamá FM" style="width:100%;height:100%;object-fit:cover;border-radius:var(--radius-card);" />
           </div>
           <div class="fade-in d2">
             <div class="sec-label">Nossa Rádio</div>
             <h2 class="sec-title light">A Paixão por Trás da<br/><em class="gold">Nossa Missão</em></h2>
-            <p class="sec-sub light">
+            <p class="sec-sub light" id="aboutText">
               Uma emissora consolidada como uma das principais fontes de informação e entretenimento da cidade e região. Confiança e credibilidade que os anunciantes podem aproveitar para divulgar suas marcas com resultados reais.
             </p>
             <ul class="about-list">
@@ -995,7 +1035,7 @@
                 </div>
                 <div>
                   <div class="ci-title">Endereço</div>
-                  <div class="ci-value">Av. Itumbiara, Panamá — GO</div>
+                  <div class="ci-value" id="contactAddress">Av. Itumbiara, Panamá — GO</div>
                 </div>
               </div>
               <div class="ci">
@@ -1004,7 +1044,7 @@
                 </div>
                 <div>
                   <div class="ci-title">Telefone / WhatsApp</div>
-                  <div class="ci-value">(64) 99236-1771</div>
+                  <div class="ci-value" id="contactPhone">(64) 99236-1771</div>
                 </div>
               </div>
               <div class="ci">
@@ -1013,7 +1053,7 @@
                 </div>
                 <div>
                   <div class="ci-title">E-mail</div>
-                  <div class="ci-value">radiopanama87.9@gmail.com</div>
+                  <div class="ci-value" id="contactEmail">radiopanama87.9@gmail.com</div>
                 </div>
               </div>
               <div class="ci">
@@ -1072,6 +1112,22 @@
       </div>
     </section>
 
+    <section class="cms-section cms-gallery" id="galeria">
+      <div class="container">
+        <div class="cms-section-head fade-in">
+          <div>
+            <div class="sec-label">A rádio em imagens</div>
+            <h2 class="sec-title">Nossa <em>Galeria</em></h2>
+            <p class="sec-sub">Eventos, bastidores e histórias registradas pela Panamá FM.</p>
+          </div>
+          <a class="cms-more" href="/galerias">Ver galerias</a>
+        </div>
+        <div class="cms-gallery-grid" id="galleryGrid">
+          <div class="cms-empty">Nenhuma galeria publicada no momento.</div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ══ FOOTER ═════════════════════════════════════ -->
@@ -1079,13 +1135,13 @@
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <img src="Logo-radio-panama.png" alt="Rádio Panamá FM" />
+          <img src="/Logo-radio-panama.png" alt="Rádio Panamá FM" />
           <p>Levando música, informação e alegria para toda a região. De bem com a vida, sempre!</p>
           <div class="footer-socials">
-            <a href="https://www.facebook.com/p/Panama-fm-879-100095100654376/" class="soc" title="Facebook" target="_blank" rel="noopener">
+            <a href="https://www.facebook.com/p/Panama-fm-879-100095100654376/" class="soc" id="facebookLink" title="Facebook" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
-            <a href="https://www.instagram.com/radiopanamafm/" class="soc" title="Instagram" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/radiopanamafm/" class="soc" id="instagramLink" title="Instagram" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
             <a href="https://wa.me/5564992361771" class="soc" id="whatsappBtn" title="WhatsApp" target="_blank" rel="noopener">
@@ -1096,11 +1152,12 @@
         <div class="footer-col">
           <h4>Navegação</h4>
           <ul>
-            <li><a href="#inicio">Início</a></li>
-            <li><a href="#programacao">Programação</a></li>
-            <li><a href="#apresentadores">Apresentadores</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="/#inicio">Início</a></li>
+            <li><a href="/#noticias">Notícias</a></li>
+            <li><a href="/#eventos">Eventos</a></li>
+            <li><a href="/#programacao">Programação</a></li>
+            <li><a href="/#apresentadores">Apresentadores</a></li>
+            <li><a href="/#galeria">Galeria</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -1129,7 +1186,7 @@
 
   <!-- ══ LIVE BAR ════════════════════════════════════ -->
   <div class="live-bar">
-    <img src="Logo-radio-panama.png" class="lb-logo" alt="Panamá FM" />
+    <img src="/Logo-radio-panama.png" class="lb-logo" alt="Panamá FM" />
     <div class="lb-info">
       <div class="lb-title" id="lbTitle">Panamá FM 87.9 — Ao Vivo</div>
       <div class="lb-sub">De bem com a vida!</div>
@@ -1146,6 +1203,7 @@
 
   <audio id="audio" preload="none"></audio>
 
+  <script src="/cms.js" defer></script>
   <script>
     // Navbar scroll
     const nav = document.getElementById('navbar');
@@ -1177,7 +1235,7 @@
     })() : null;
 
     // ── PLAYER ───────────────────────────────────────────────
-    const STREAM_URL = 'https://s28.maxcast.com.br:8000/live';
+    let STREAM_URL = 'https://s28.maxcast.com.br:8000/live';
 
     const audio = document.getElementById('audio');
     let playing     = false;
@@ -1259,7 +1317,7 @@
         title:  'Panamá FM 87.9 — Ao Vivo',
         artist: 'De bem com a vida!',
         album:  'Panamá, Goiás',
-        artwork: [{ src: 'Logo-radio-panama.png', sizes: '512x512', type: 'image/png' }]
+        artwork: [{ src: '/Logo-radio-panama.png', sizes: '512x512', type: 'image/png' }]
       });
       navigator.mediaSession.setActionHandler('play',  () => { if (!playing) togglePlay(); });
       navigator.mediaSession.setActionHandler('pause', () => { if (playing)  togglePlay(); });

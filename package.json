@@ -1,0 +1,9 @@
+{
+  "name": "panamafm",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix studio ci && npm --prefix studio run build && node scripts/build-site.mjs",
+    "vercel-build": "npm run build"
+  }
+}

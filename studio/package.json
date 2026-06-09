@@ -1,0 +1,22 @@
+{
+  "name": "panama-fm-studio",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build --base-path /admin",
+    "deploy": "sanity deploy",
+    "schema:deploy": "sanity schema deploy",
+    "content:seed": "node scripts/import-existing-content.mjs"
+  },
+  "dependencies": {
+    "@sanity/vision": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^4.0.0",
+    "styled-components": "^6.1.15"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.0"
+  }
+}
